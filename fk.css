@@ -1,0 +1,125 @@
+/* פלטת צבעים והגדרות יסוד */
+:root {
+    --bg-dark: #050505;
+    --danger-red: #ff0000;
+    --blood-dark: #4a0000;
+    --warning-orange: #ff4d00;
+    --text-pure: #ffffff;
+    --text-grey: #666666;
+    --glitch-cyan: #00f2ff;
+    --transition-fast: 0.1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+/* רקע דמוי "ערפל דם" ורעש דיגיטלי */
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-pure);
+    margin: 0;
+    font-family: 'Arial Black', Gadget, sans-serif;
+    overflow-x: hidden;
+    background-image: 
+        radial-gradient(circle at 50% 50%, var(--blood-dark), transparent 80%),
+        url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+}
+
+/* כותרת עם אפקט Flicker (הבהוב) */
+.logo {
+    font-size: 5rem;
+    text-align: center;
+    color: var(--danger-red);
+    text-transform: uppercase;
+    letter-spacing: -5px;
+    text-shadow: 5px 5px 0px #000;
+    animation: flicker 1.5s infinite;
+}
+
+@keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; filter: drop-shadow(0 0 10px var(--danger-red)); }
+    20%, 22%, 24%, 55% { opacity: 0.2; filter: none; }
+}
+
+/* קונטיינר וקארדים בעיצוב ברוטליסטי */
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 40px;
+}
+
+.card {
+    background: rgba(10, 10, 10, 0.9);
+    border: 2px solid #222;
+    border-left: 10px solid var(--danger-red);
+    padding: 30px;
+    position: relative;
+    transition: var(--transition-fast);
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: skewX(-3deg) scale(1.02);
+    border-color: var(--danger-red);
+    box-shadow: -15px 15px 40px rgba(255, 0, 0, 0.3);
+    background: #110000;
+}
+
+/* אפקט Glitch על טקסט במעבר עכבר */
+.card h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.card:hover h2 {
+    animation: glitch 0.3s infinite;
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); text-shadow: 2px 0 var(--glitch-cyan), -2px 0 var(--danger-red); }
+    25% { transform: translate(-2px, 2px); }
+    50% { transform: translate(2px, -2px); text-shadow: -2px 0 var(--glitch-cyan), 2px 0 var(--danger-red); }
+    75% { transform: translate(-2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+/* כפתור "אלים" עם חיתוך חד */
+.danger-btn {
+    background: var(--danger-red);
+    color: #fff;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    cursor: crosshair;
+    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+    transition: 0.1s;
+    margin-top: 20px;
+}
+
+.danger-btn:hover {
+    background: var(--text-pure);
+    color: #000;
+    transform: translateX(10px) skewX(-10deg);
+    box-shadow: -5px 5px 0px var(--warning-orange);
+}
+
+/* פס התרעה דקורטיבי */
+.warning-bar {
+    width: 100%;
+    height: 30px;
+    background: repeating-linear-gradient(
+        45deg,
+        #000,
+        #000 20px,
+        var(--warning-orange) 20px,
+        var(--warning-orange) 40px
+    );
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+}
+
+/* סמן מיוחד (מטרה) */
+* {
+    cursor: url('https://cur.cursors-4u.net/games/gam-4/gam373.cur'), auto !important;
+}
